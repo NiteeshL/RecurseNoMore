@@ -102,6 +102,21 @@ Recent optimization efforts have achieved dramatic performance improvements:
 | **Extreme Linear (30K)** | 1,172,200 ns | 588,700 ns | **+49.78%** | **2.0x faster** |
 | **Extreme Tail (25K)**   | 1,081,800 ns | 925,500 ns | **+14.45%** | **1.2x faster** |
 
+
+
+<img width="522" height="93" alt="Screenshot 2025-07-27 121856" src="https://github.com/user-attachments/assets/aba07afb-841f-41e4-ad0b-1be016f14fb5" />
+<img width="464" height="108" alt="Screenshot 2025-07-27 122831" src="https://github.com/user-attachments/assets/75a4892b-3670-452e-8138-cb27271de476" />
+<img width="647" height="108" alt="Screenshot 2025-07-27 123212" src="https://github.com/user-attachments/assets/94d2efbe-d6d6-4715-9357-1a12885ca3b6" />
+<img width="428" height="121" alt="Screenshot 2025-07-27 125849" src="https://github.com/user-attachments/assets/21b827b2-7672-4ad4-9ec1-b724bc018c0f" />
+<img width="429" height="124" alt="Screenshot 2025-07-27 125915" src="https://github.com/user-attachments/assets/0afafabf-a49f-435e-a692-7529c1faef67" />
+<img width="505" height="111" alt="Screenshot 2025-07-27 125903" src="https://github.com/user-attachments/assets/c6d54fcc-5f9e-4a53-b859-7110728786d5" />
+<img width="498" height="199" alt="Screenshot 2025-07-27 153621" src="https://github.com/user-attachments/assets/c9984959-5b1a-4971-955b-969ee274e933" />
+<img width="389" height="177" alt="Screenshot 2025-07-27 153629" src="https://github.com/user-attachments/assets/b78908c4-5dfd-40b1-a9cc-423beb0826cd" />
+<img width="774" height="808" alt="Screenshot 2025-07-27 203834" src="https://github.com/user-attachments/assets/70c479d5-9c7e-483a-952b-cf4669976275" />
+<img width="569" height="487" alt="Screenshot 2025-07-27 222353" src="https://github.com/user-attachments/assets/108084da-747a-431b-96d7-28d919429c68" />
+
+
+
 ## 🎯 Quick Start
 
 ### Building the Enhanced Compiler
