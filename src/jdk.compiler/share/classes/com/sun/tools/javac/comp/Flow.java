@@ -628,7 +628,7 @@ public class Flow {
             while (exits.nonEmpty()) {
                 PendingExit exit = exits.head;
                 exits = exits.tail;
-                Assert.check((inMethod && exit.tree.hasTag(RETURN)) ||
+                Assert.check((inMethod && (exit.tree.hasTag(RETURN) || exit.tree.hasTag(FASTRETURN))) ||
                                 log.hasErrorOn(exit.tree.pos()));
             }
         }
@@ -1281,6 +1281,11 @@ public class Flow {
             recordExit(new PendingExit(tree));
         }
 
+        public void visitFastReturn(JCFastReturn tree) {
+            scan(tree.expr);
+            recordExit(new PendingExit(tree));
+        }
+
         public void visitThrow(JCThrow tree) {
             scan(tree.expr);
             markDead();
@@ -1545,7 +1550,7 @@ public class Flow {
                     PendingExit exit = exits.head;
                     exits = exits.tail;
                     if (!(exit instanceof ThrownPendingExit)) {
-                        Assert.check(exit.tree.hasTag(RETURN) ||
+                        Assert.check((exit.tree.hasTag(RETURN) || exit.tree.hasTag(FASTRETURN)) ||
                                          log.hasErrorOn(exit.tree.pos()));
                     } else {
                         // uncaught throws will be reported later
@@ -1802,6 +1807,11 @@ public class Flow {
             recordExit(new PendingExit(tree));
         }
 
+        public void visitFastReturn(JCFastReturn tree) {
+            scan(tree.expr);
+            recordExit(new PendingExit(tree));
+        }
+
         public void visitThrow(JCThrow tree) {
             scan(tree.expr);
             Symbol sym = TreeInfo.symbol(tree.expr);
@@ -1888,7 +1898,7 @@ public class Flow {
                     PendingExit exit = exits.head;
                     exits = exits.tail;
                     if (!(exit instanceof ThrownPendingExit)) {
-                        Assert.check(exit.tree.hasTag(RETURN) ||
+                        Assert.check((exit.tree.hasTag(RETURN) || exit.tree.hasTag(FASTRETURN)) ||
                                         log.hasErrorOn(exit.tree.pos()));
                     } else {
                         // uncaught throws will be reported later
@@ -2567,7 +2577,7 @@ public class Flow {
             while (exits.nonEmpty()) {
                 PendingExit exit = exits.head;
                 exits = exits.tail;
-                Assert.check((inMethod && exit.tree.hasTag(RETURN)) ||
+                Assert.check((inMethod && (exit.tree.hasTag(RETURN) || exit.tree.hasTag(FASTRETURN))) ||
                                  log.hasErrorOn(exit.tree.pos()),
                              exit.tree);
                 if (inMethod && isConstructor) {
@@ -3014,6 +3024,12 @@ public class Flow {
 
         @Override
         public void visitReturn(JCReturn tree) {
+            scanExpr(tree.expr);
+            recordExit(new AssignPendingExit(tree, inits, uninits));
+        }
+
+        @Override
+        public void visitFastReturn(JCFastReturn tree) {
             scanExpr(tree.expr);
             recordExit(new AssignPendingExit(tree, inits, uninits));
         }

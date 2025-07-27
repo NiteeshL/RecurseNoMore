@@ -2923,7 +2923,7 @@ public class JavacParser implements Parser {
         case RBRACE: case CASE: case DEFAULT: case EOF:
             return List.nil();
         case LBRACE: case IF: case FOR: case WHILE: case DO: case TRY:
-        case SWITCH: case SYNCHRONIZED: case RETURN: case THROW: case BREAK:
+        case SWITCH: case SYNCHRONIZED: case RETURN: case FASTRETURN: case THROW: case BREAK:
         case CONTINUE: case SEMI: case ELSE: case FINALLY: case CATCH:
         case ASSERT:
             return List.of(parseSimpleStatement());
@@ -3178,6 +3178,13 @@ public class JavacParser implements Parser {
             JCExpression result = token.kind == SEMI ? null : parseExpression();
             accept(SEMI);
             JCReturn t = toP(F.at(pos).Return(result));
+            return t;
+        }
+        case FASTRETURN: {
+            nextToken();
+            JCExpression result = token.kind == SEMI ? null : parseExpression();
+            accept(SEMI);
+            JCFastReturn t = toP(F.at(pos).FastReturn(result));
             return t;
         }
         case THROW: {

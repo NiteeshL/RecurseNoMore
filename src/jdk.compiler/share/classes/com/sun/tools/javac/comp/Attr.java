@@ -2519,6 +2519,40 @@ public class Attr extends JCTree.Visitor {
         result = null;
     }
 
+    public void visitFastReturn(JCFastReturn tree) {
+        // FastReturn has similar constraints to return but with relaxed finalizer checks
+        // Check that there is an enclosing method which is
+        // nested within than the enclosing class.
+        if (env.info.returnResult == null) {
+            log.error(tree.pos(), Errors.RetOutsideMeth);
+        } else if (env.info.yieldResult != null) {
+            log.error(tree.pos(), Errors.ReturnOutsideSwitchExpression);
+            if (tree.expr != null) {
+                attribExpr(tree.expr, env, env.info.yieldResult.pt);
+            }
+        } else if (!env.info.isLambda &&
+                env.enclMethod != null &&
+                TreeInfo.isCompactConstructor(env.enclMethod)) {
+            log.error(env.enclMethod,
+                    Errors.InvalidCanonicalConstructorInRecord(Fragments.Compact, env.enclMethod.sym.name, Fragments.CanonicalCantHaveReturnStatement));
+        } else {
+            // Attribute fastreturn expression, if it exists, and check that
+            // it conforms to result type of enclosing method.
+            if (tree.expr != null) {
+                if (env.info.returnResult.pt.hasTag(VOID)) {
+                    env.info.returnResult.checkContext.report(tree.expr.pos(),
+                              diags.fragment(Fragments.UnexpectedRetVal));
+                }
+                attribTree(tree.expr, env, env.info.returnResult);
+            } else if (!env.info.returnResult.pt.hasTag(VOID) &&
+                    !env.info.returnResult.pt.hasTag(NONE)) {
+                env.info.returnResult.checkContext.report(tree.pos(),
+                              diags.fragment(Fragments.MissingRetVal(env.info.returnResult.pt)));
+            }
+        }
+        result = null;
+    }
+
     public void visitThrow(JCThrow tree) {
         Type owntype = attribExpr(tree.expr, env, Type.noType);
         chk.checkType(tree, owntype, syms.throwableType);

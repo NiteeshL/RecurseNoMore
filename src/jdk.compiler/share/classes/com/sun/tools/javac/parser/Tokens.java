@@ -132,6 +132,7 @@ public class Tokens {
         PROTECTED("protected"),
         PUBLIC("public"),
         RETURN("return"),
+        FASTRETURN("fastreturn"),
         SHORT("short", Tag.NAMED),
         STATIC("static"),
         STRICTFP("strictfp"),

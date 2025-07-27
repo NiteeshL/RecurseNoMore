@@ -240,6 +240,10 @@ public class TreeScanner extends Visitor {
         scan(tree.expr);
     }
 
+    public void visitFastReturn(JCFastReturn tree) {
+        scan(tree.expr);
+    }
+
     public void visitThrow(JCThrow tree) {
         scan(tree.expr);
     }
