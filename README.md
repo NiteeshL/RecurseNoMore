@@ -67,11 +67,11 @@ This project a custom **`fastreturn`** keyword to the Java language - a performa
 - Updated assertions to accept `FASTRETURN` tag alongside `RETURN`
 
 ### Key Features
-- ✨ **New `fastreturn` Keyword**: Optimized return mechanism for recursive functions
-- ⚡ **Up to 78.43% Performance Improvement**: Proven performance gains in deep recursion scenarios  
-- 🔧 **Full Compiler Integration**: Seamless integration with OpenJDK compiler infrastructure
-- 🧪 **Comprehensive Testing**: Extensive test suite validating performance and correctness
-- 📊 **Benchmarking Framework**: Built-in performance measurement tools
+- **New `fastreturn` Keyword**: Optimized return mechanism for recursive functions
+- **Up to 78.43% Performance Improvement**: Proven performance gains in deep recursion scenarios  
+- **Full Compiler Integration**: Seamless integration with OpenJDK compiler infrastructure
+- **Comprehensive Testing**: Extensive test suite validating performance and correctness
+- **Benchmarking Framework**: Built-in performance measurement tools
 
 ## 📈 Performance Results
 
@@ -103,7 +103,6 @@ Recent optimization efforts have achieved dramatic performance improvements:
 | **Extreme Tail (25K)**   | 1,081,800 ns | 925,500 ns | **+14.45%** | **1.2x faster** |
 
 
-
 <img width="522" height="93" alt="Screenshot 2025-07-27 121856" src="https://github.com/user-attachments/assets/aba07afb-841f-41e4-ad0b-1be016f14fb5" />
 <img width="464" height="108" alt="Screenshot 2025-07-27 122831" src="https://github.com/user-attachments/assets/75a4892b-3670-452e-8138-cb27271de476" />
 <img width="647" height="108" alt="Screenshot 2025-07-27 123212" src="https://github.com/user-attachments/assets/94d2efbe-d6d6-4715-9357-1a12885ca3b6" />
@@ -114,7 +113,6 @@ Recent optimization efforts have achieved dramatic performance improvements:
 <img width="389" height="177" alt="Screenshot 2025-07-27 153629" src="https://github.com/user-attachments/assets/b78908c4-5dfd-40b1-a9cc-423beb0826cd" />
 <img width="774" height="808" alt="Screenshot 2025-07-27 203834" src="https://github.com/user-attachments/assets/70c479d5-9c7e-483a-952b-cf4669976275" />
 <img width="569" height="487" alt="Screenshot 2025-07-27 222353" src="https://github.com/user-attachments/assets/108084da-747a-431b-96d7-28d919429c68" />
-
 
 
 ## 🎯 Quick Start
@@ -172,29 +170,29 @@ The project includes comprehensive testing:
 FastReturn excels in these scientifically validated scenarios:
 
 ### 🏆 **Proven High-Performance Areas:**
-- **🚀 Deep Linear Recursion (15,000+ depth)**: **24-38% faster**
+- **Deep Linear Recursion (15,000+ depth)**: **24-38% faster**
   - Mathematical computations, tree traversals
   - Peak performance: **2x faster** at extreme depths (30,000+)
   
-- **⭐ High-Iteration Computational (10,000+ iterations)**: **22% faster**
+- **High-Iteration Computational (10,000+ iterations)**: **22% faster**
   - Factorial calculations, mathematical sequences  
   - Consistent performance across iteration ranges
 
-- **💫 Medium-Depth Tail Recursion (5,000-15,000)**: **12-28% faster**
+- **Medium-Depth Tail Recursion (5,000-15,000)**: **12-28% faster**
   - Accumulator patterns, iterative algorithms
   - Reliable benefits across various depths
 
-- **🎯 Stack-Intensive Algorithms**: **Up to 49% faster**
+- **Stack-Intensive Algorithms**: **Up to 49% faster**
   - Fibonacci sequences, recursive data structures
   - Performance-critical applications (real-time systems)
 
 ### 📊 **Sweet Spot Summary:**
 ```
 ✅ BEST PERFORMANCE GAINS:
-  🥇 Extreme Linear Recursion:    +49.78% (2.0x faster)
-  🥈 Deep Linear Recursion:       +24-38% improvement  
-  🥉 High-Iteration Factorial:    +22.40% improvement
-  ⭐ Tail Recursion Patterns:     +12-28% improvement
+  Extreme Linear Recursion:    +49.78% (2.0x faster)
+  Deep Linear Recursion:       +24-38% improvement  
+  High-Iteration Factorial:    +22.40% improvement
+  Tail Recursion Patterns:     +12-28% improvement
 ```
 
 ### Expected Performance Metrics
@@ -233,15 +231,15 @@ FastReturn excels in these scientifically validated scenarios:
 ## 🔒 Safety & Compatibility
 
 ### Maintained Guarantees
-- ✅ **Type Safety**: Full Java type system compliance
-- ✅ **Backward Compatibility**: Existing code unaffected  
-- ✅ **Exception Safety**: Proper exception handling preservation
-- ✅ **Debugging Support**: Full debugging capabilities maintained
+- **Type Safety**: Full Java type system compliance
+- **Backward Compatibility**: Existing code unaffected  
+- **Exception Safety**: Proper exception handling preservation
+- **Debugging Support**: Full debugging capabilities maintained
 
 ### Limitations & Considerations
-- ⚠️ **Finalizer Bypass**: Does not execute finally blocks
-- ⚠️ **Monitoring Skip**: May bypass some profiling hooks
-- ⚠️ **Context Specific**: Intended for performance-critical recursive code
+- **Finalizer Bypass**: Does not execute finally blocks
+- **Monitoring Skip**: May bypass some profiling hooks
+- **Context Specific**: Intended for performance-critical recursive code
 
 
 ## 🤝 Contributing
