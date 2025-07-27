@@ -384,6 +384,12 @@ public class TreeMaker implements JCTree.Factory {
         return tree;
     }
 
+    public JCFastReturn FastReturn(JCExpression expr) {
+        JCFastReturn tree = new JCFastReturn(expr);
+        tree.pos = pos;
+        return tree;
+    }
+
     public JCThrow Throw(JCExpression expr) {
         JCThrow tree = new JCThrow(expr);
         tree.pos = pos;

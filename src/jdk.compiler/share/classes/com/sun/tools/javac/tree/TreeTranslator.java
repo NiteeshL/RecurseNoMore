@@ -281,6 +281,11 @@ public class TreeTranslator extends JCTree.Visitor {
         result = tree;
     }
 
+    public void visitFastReturn(JCFastReturn tree) {
+        tree.expr = translate(tree.expr);
+        result = tree;
+    }
+
     public void visitThrow(JCThrow tree) {
         tree.expr = translate(tree.expr);
         result = tree;

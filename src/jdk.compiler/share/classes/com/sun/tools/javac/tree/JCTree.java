@@ -201,6 +201,10 @@ public abstract class JCTree implements Tree, Cloneable, DiagnosticPosition {
          */
         RETURN,
 
+        /** Fast return statements, of type FastReturn.
+         */
+        FASTRETURN,
+
         /** Throw statements, of type Throw.
          */
         THROW,
@@ -1782,6 +1786,32 @@ public abstract class JCTree implements Tree, Cloneable, DiagnosticPosition {
         @Override
         public Tag getTag() {
             return RETURN;
+        }
+    }
+
+    /**
+     * A fast return statement.
+     */
+    public static class JCFastReturn extends JCStatement {
+        public JCExpression expr;
+        protected JCFastReturn(JCExpression expr) {
+            this.expr = expr;
+        }
+        @Override
+        public void accept(Visitor v) { v.visitFastReturn(this); }
+
+        @Override
+        public <R,D> R accept(TreeVisitor<R,D> v, D d) {
+            return v.visitOther(this, d); // Use visitOther for TreeVisitor
+        }
+
+        @DefinedBy(Api.COMPILER_TREE)
+        public Kind getKind() { return Kind.OTHER; }
+
+        public JCExpression getExpression() { return expr; }
+        @Override
+        public Tag getTag() {
+            return FASTRETURN;
         }
     }
 
@@ -3482,6 +3512,7 @@ public abstract class JCTree implements Tree, Cloneable, DiagnosticPosition {
         JCYield Yield(JCExpression value);
         JCContinue Continue(Name label);
         JCReturn Return(JCExpression expr);
+        JCFastReturn FastReturn(JCExpression expr);
         JCThrow Throw(JCExpression expr);
         JCAssert Assert(JCExpression cond, JCExpression detail);
         JCMethodInvocation Apply(List<JCExpression> typeargs,
@@ -3555,6 +3586,7 @@ public abstract class JCTree implements Tree, Cloneable, DiagnosticPosition {
         public void visitYield(JCYield that)                 { visitTree(that); }
         public void visitContinue(JCContinue that)           { visitTree(that); }
         public void visitReturn(JCReturn that)               { visitTree(that); }
+        public void visitFastReturn(JCFastReturn that)       { visitTree(that); }
         public void visitThrow(JCThrow that)                 { visitTree(that); }
         public void visitAssert(JCAssert that)               { visitTree(that); }
         public void visitApply(JCMethodInvocation that)      { visitTree(that); }
