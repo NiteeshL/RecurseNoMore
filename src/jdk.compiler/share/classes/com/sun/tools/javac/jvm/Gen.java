@@ -1914,19 +1914,20 @@ public class Gen extends JCTree.Visitor {
     public void visitFastReturn(JCFastReturn tree) {
         int limit = code.nextreg;
         
-        /* FastReturn bypasses stack unwinding and finalizer execution 
-         * for performance optimization in deeply recursive functions.
+        /* FastReturn: Performance-optimized return that bypasses stack unwinding.
+         * Follows same pattern as regular return but skips expensive unwinding operations.
+         * Key optimization: No unwind() or endFinalizerGaps() calls for deep recursion performance.
          */
         if (tree.expr != null) {
             Assert.check(code.isStatementStart());
-            Item r = genExpr(tree.expr, pt).load();
-            r.load();
+            // Follow exact same pattern as regular return but without unwinding
+            genExpr(tree.expr, pt).load();
             code.emitop0(ireturn + Code.truncate(Code.typecode(pt)));
         } else {
             code.emitop0(return_);
         }
         code.endScopes(limit);
-        code.markDead(); // Mark code as dead after fastreturn
+        code.markDead();
     }
 
     public void visitThrow(JCThrow tree) {
