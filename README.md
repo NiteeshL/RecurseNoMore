@@ -6,7 +6,7 @@
 
 ## 🚀 Overview
 
-This project a custom **`fastreturn`** keyword to the Java language - a performance optimization feature designed to dramatically improve recursive function execution by bypassing stack unwinding operations.
+This project introduces a custom **`fastreturn`** keyword to Java - a performance optimization feature designed to dramatically improve recursive function execution by bypassing stack unwinding operations.
 
 ## 🔧 Technical Architecture
 
